@@ -1,7 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from rest_framework import generics
+from .serializers import RoomSerializer
+from .models import Room   #Create a class and inherit from generics
 # Create your views here.
-def main(request):
-    #return a response
-    return HttpResponse("<h1>My Man</h1>")
+
+
+class RoomView(generics.ListAPIView):  #Make this CreateAPIVIew, ListAPIVIEW
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+
+
